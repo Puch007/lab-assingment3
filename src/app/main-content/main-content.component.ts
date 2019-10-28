@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+
 interface IStudent {
-  id:number;
-  firstName: string;
-  lastName: string;
-  course: string;
+id: number;
+firstName: string;
+lastName: string;
+course: string;
+editMode: boolean;
 }
 @Component({
   selector: 'main-content',
@@ -12,47 +14,74 @@ interface IStudent {
 })
 export class MainContentComponent implements OnInit {
 
-  
-  students: Array<IStudent> = [];
 
-  constructor() {
-  this.students[0] = {
+studentArray: Array<IStudent> = [];
+disableAddButton = false;
+constructor() { }
+
+  ngOnInit() {
+  this.studentArray = [  {
     id: 1,
     firstName: 'Jose',
     lastName: 'Hernandez',
-    course: 'Programming'
-  }
-  this.students[1] = {
-    id: 1,
+    course: 'Programming',
+    editMode: false
+  },
+
+ {
+    id: 2,
     firstName: 'Bradley',
     lastName: 'Cooper',
-    course: 'Bowling'
-  }
-  this.students[2] = {
-    id: 1,
+    course: 'Bowling',
+    editMode: false
+
+  },
+  {
+    id: 3,
     firstName: 'Yu',
     lastName: 'Succ',
-    course: 'Philosophy'
-  }
-  this.students[3] = {
-      id: 1,
+    course: 'Philosophy',
+    editMode: false
+
+  },
+   {
+      id: 4,
       firstName: 'John',
       lastName: 'Legend',
-      course: 'Music'
-  }
-  }
+      course: 'Music',
+      editMode: false
 
-  ngOnInit() {
   }
+];
+}
 
-  addStudent(){
-    const student: IStudent = {
-    id: 1,
-    firstName: 'Michael',
-    lastName: 'Jordan',
-    course: 'Sports'
 
-    };
-    this.students.push(student);
-  }
+
+addStudent() {
+  this.studentArray.unshift({
+  id: null,
+  firstName: null,
+  lastName: null,
+  course: null,
+  editMode: true
+
+  });
+  this.disableAddButton = true;
+}
+
+removeStudent(index: number) {
+console.log('index---->', index);
+this.studentArray.splice(index, 1);
+}
+saveStudent() {
+  this.studentArray[0].editMode = false;
+  this.disableAddButton = false;
+  this.sort('asc');
+}
+
+sort(direction: string) {
+this.studentArray.sort((a: IStudent, b: IStudent) => {
+ return a.id < b.id ? -1 : 1;
+  });
+}
 }
