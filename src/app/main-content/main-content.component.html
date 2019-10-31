@@ -31,19 +31,17 @@
                     <td *ngIf="student.editMode== false">{{ student.course }}</td>
 
                     <th *ngIf="student.editMode === true" scope="row">
-                        <input [(ngModel)]= "student.FirstName" type="text" class="form-control" placeholder="First Name">
+                        <input [(ngModel)]= "student.id" type="text" class="form-control" placeholder="ID">
                     </th>
                     <td *ngIf="student.editMode">
-                        <input [(ngModel)]= "student.LastName" type="text" class="form-control" placeholder="Last Name">
-
+                        <input [(ngModel)]= "student.firstName" type="text" class="form-control" placeholder="First Name">
+                       </td>
+                    <td *ngIf="student.editMode">
+                        <input [(ngModel)]= "student.lastName" type="text" class="form-control" placeholder="Last Name">
                       </td>
                     <td *ngIf="student.editMode">
-                        <input [(ngModel)]= "student.course" type="text" class="form-control" placeholder="Course">
-                      </td>
-                    <td *ngIf="student.editMode">
-                        <input [(ngModel)]= "student.id" type="text" class="form-control" placeholder="ID">
-
-                      </td>
+                        <input [(ngModel)]= "student.course" type="text" class="form-control" placeholder="Course ">
+                     </td>
 
                     <td> <button type="button" class="btn btn-danger pull-right" (click)="removeStudent('i')">X</button>
                     </td>
